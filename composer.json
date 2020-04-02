@@ -1,0 +1,17 @@
+{
+    "name": "clickspaceio/laravel-clickexception",
+    "require": {
+    },
+    "require-dev": {
+    },
+    "autoload": {
+        "psr-4": {
+            "Clickspace\\LaravelClickException\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Clickspace\\LaravelClickException\\Test\\": "tests/"
+        }
+    }
+}
