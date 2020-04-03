@@ -16,14 +16,7 @@ use Throwable;
 
 class ClickExceptionHandler extends ExceptionHandler
 {
-
-    /**
-     * rendered.
-     *
-     * @var mixed
-     */
-    protected $rendered = null;
-
+    
     /**
      * Report or log an exception.
      *
@@ -71,7 +64,7 @@ class ClickExceptionHandler extends ExceptionHandler
             $exception->responseBodyType = 'invalid_request';
             $exception->responseBodyCode = 'validation_error';
             $exception->responseBodyMessage = $exception->getMessage();
-            $exception->responseBodyAppends['fields'] = $this->rendered->getOriginalContent();
+            $exception->responseBodyAppends['fields'] = $exception->errors();
         } elseif ($exception instanceof AuthorizationException) {
             $exception->responseBodyType = 'invalid_request';
             $exception->responseBodyCode = 'invalid_credentials';
@@ -116,8 +109,6 @@ class ClickExceptionHandler extends ExceptionHandler
      */
     public function render($request, Throwable $exception)
     {
-        $this->rendered = parent::render($request, $exception);
-
         if (method_exists($exception, 'render') && $response = $exception->render($request)) {
             return Router::toResponse($request, $response);
         } elseif ($exception instanceof Responsable) {
