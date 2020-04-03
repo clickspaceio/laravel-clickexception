@@ -65,6 +65,7 @@ class ClickExceptionHandler extends ExceptionHandler
             $exception->responseBodyCode = 'validation_error';
             $exception->responseBodyMessage = $exception->getMessage();
             $exception->responseBodyAppends['fields'] = $exception->errors();
+            $exception->responseRenderHttpCode = '422';
         } elseif ($exception instanceof AuthorizationException) {
             $exception->responseBodyType = 'invalid_request';
             $exception->responseBodyCode = 'invalid_credentials';
