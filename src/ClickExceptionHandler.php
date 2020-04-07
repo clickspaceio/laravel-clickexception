@@ -64,11 +64,11 @@ class ClickExceptionHandler extends ExceptionHandler
             $exception->responseBodyType = 'invalid_request';
             $exception->responseBodyCode = 'validation_error';
             $exception->responseBodyMessage = $exception->getMessage();
-            $exception->responseBodyAppends['fields'] = $this->rendered->getOriginalContent();
+            $exception->responseBodyAppends['fields'] = $this->errors();
         } elseif ($exception instanceof AuthorizationException) {
             $exception->responseBodyType = 'invalid_request';
             $exception->responseBodyCode = 'invalid_credentials';
-            $exception->responseBodyMessage = $exception->errors();
+            $exception->responseBodyMessage = $exception->getMessage();
         } else {
             $exception->responseBodyType = $exception->responseBodyType ?? 'server_error';
             $exception->responseBodyCode = $exception->responseBodyCode ?? 'undefined_server_error';
