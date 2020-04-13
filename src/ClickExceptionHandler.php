@@ -39,8 +39,8 @@ class ClickExceptionHandler extends ExceptionHandler
     protected function convertExceptionToArray(Throwable $exception)
     {
 
-        if (!isset($exception->responseRenderHttpCode)) {
-            $exception->responseRenderHttpCode = $this->isHttpException($exception) ? $exception->getStatusCode() : '500';
+        if (!isset($exception->responseBodyHttpCode)) {
+            $exception->responseBodyHttpCode = $this->isHttpException($exception) ? $exception->getStatusCode() : '500';
         }
 
         $exception->responseHeaders = array_merge(
@@ -131,7 +131,7 @@ class ClickExceptionHandler extends ExceptionHandler
     {
         return new JsonResponse(
             $this->convertExceptionToArray($exception),
-            $exception->responseRenderHttpCode,
+            $exception->responseBodyHttpCode,
             $exception->responseHeaders,
             JSON_PRETTY_PRINT | JSON_UNESCAPED_SLASHES
         );
