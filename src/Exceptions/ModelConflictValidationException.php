@@ -1,10 +1,9 @@
 <?php
 
 
-namespace App\Exceptions;
+namespace Clickspace\LaravelClickException\Exceptions;
 
 
-use Clickspace\LaravelClickException\ClickException;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 
 class ModelConflictValidationException extends ClickException

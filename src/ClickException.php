@@ -1,6 +1,6 @@
 <?php
 
-namespace Clickspace\LaravelClickException;
+namespace Clickspace\LaravelClickException\Exceptions;
 
 use Exception;
 use Throwable;
