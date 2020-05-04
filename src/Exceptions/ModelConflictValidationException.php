@@ -20,7 +20,7 @@ class ModelConflictValidationException extends ClickException
     public function __construct($obj, ModelNotFoundException $previous = null)
     {
         $this->responseBodyType = 'invalid_request';
-        $this->responseBodyCode = 'validation_error';
+        $this->responseBodyCode = 'conflict';
 
         $this->responseBodyMessage = 'The object informed is already registered.';
         $this->responseBodyAppends = [
@@ -28,7 +28,7 @@ class ModelConflictValidationException extends ClickException
         ];
         $this->responseBodyHttpCode = "409";
         $this->responseHeaders = [];
-        $this->message = 'vaquinha';
+        $this->message = 'The object informed is already registered.';
 
 //        parent::__construct($this->message, $this->responseBodyHttpCode, $previous);
     }

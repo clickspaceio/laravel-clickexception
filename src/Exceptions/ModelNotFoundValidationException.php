@@ -30,7 +30,7 @@ class ModelNotFoundValidationException extends ClickException
         ];
         $this->responseBodyHttpCode = "422";
         $this->responseHeaders = [];
-        $this->message = 'vaquinha';
+        $this->message = 'The object was not found';
 
 //        parent::__construct($this->message, $this->responseBodyHttpCode, $previous);
     }
