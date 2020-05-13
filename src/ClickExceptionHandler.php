@@ -39,8 +39,12 @@ class ClickExceptionHandler extends ExceptionHandler
     protected function convertExceptionToArray(Throwable $exception)
     {
 
+
         if (!isset($exception->responseBodyHttpCode)) {
-            $exception->responseBodyHttpCode = $this->isHttpException($exception) ? $exception->getStatusCode() : '500';
+            if($exception instanceof ValidationException)
+                $exception->responseBodyHttpCode = '422';
+            else
+                $exception->responseBodyHttpCode = $this->isHttpException($exception) ? $exception->getStatusCode() : '500';
         }
 
         $exception->responseHeaders = array_merge(
